@@ -21,6 +21,8 @@ public class Proxy {
 
 	private static final Logger log = LoggerFactory.getLogger(Proxy.class);
 
+	private volatile boolean isProxyAlive = true;
+	
 	private final ExecutorService threadPool = Executors.newCachedThreadPool();
 	private final ServerSocket ssocket;
 	private final Properties props;
@@ -33,10 +35,10 @@ public class Proxy {
 	}
 
 	 public void start() {
-	        System.out.println("Server started...");
+	        log.info("Http Proxy started...");
 	        threadPool.execute(new Runnable() {
 	        	public void run() {
-					while (true) {
+					while (isProxyAlive) {
 						try {
 							Socket localSocket = ssocket.accept();
 							Handler handler = getHandler(localSocket);
