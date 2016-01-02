@@ -13,7 +13,7 @@ import org.apache.logging.log4j.core.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.proxy.Proxy;
+import io.anaxo.net.ntlmproxy.http.Proxy;
 import io.anaxo.net.ntlmproxy.tunnel.Tunnel;
 
 public class Main {

@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.proxy.handlers;
+package io.anaxo.net.ntlmproxy.http.handlers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,9 +20,9 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.proxy.Clients;
-import io.anaxo.net.ntlmproxy.proxy.EndPoints;
-import io.anaxo.net.ntlmproxy.proxy.HttpParser;
+import io.anaxo.net.ntlmproxy.http.Clients;
+import io.anaxo.net.ntlmproxy.http.EndPoints;
+import io.anaxo.net.ntlmproxy.http.HttpParser;
 import io.anaxo.net.ntlmproxy.utils.Piper;
 
 public abstract class Handler implements Runnable {

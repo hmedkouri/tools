@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.proxy.handlers;
+package io.anaxo.net.ntlmproxy.http.handlers;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 import org.apache.http.entity.InputStreamEntity;
 
-import io.anaxo.net.ntlmproxy.proxy.HttpParser;
+import io.anaxo.net.ntlmproxy.http.HttpParser;
 
 public class StreamingRequestEntity extends InputStreamEntity {
 

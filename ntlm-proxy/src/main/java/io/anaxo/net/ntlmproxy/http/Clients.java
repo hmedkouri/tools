@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.proxy;
+package io.anaxo.net.ntlmproxy.http;
 
 import java.util.Properties;
 
