@@ -17,7 +17,7 @@ import io.anaxo.net.ntlmproxy.http.handlers.HttpGetHandler;
 import io.anaxo.net.ntlmproxy.http.handlers.HttpHeadHandler;
 import io.anaxo.net.ntlmproxy.http.handlers.HttpPostHandler;
 
-public class Proxy extends Thread {
+public class Proxy {
 
 	private static final Logger log = LoggerFactory.getLogger(Proxy.class);
 
@@ -32,19 +32,23 @@ public class Proxy extends Thread {
 		this.clients = new Clients(props);
 	}
 
-	@Override
-	public void run() {
-		while (true) {
-			try {
-				Socket localSocket = ssocket.accept();
-				Handler handler = getHandler(localSocket);
-				threadPool.execute(handler);
-			} catch (Exception e) {
-				log.error(e.getMessage(), e);
-				break;
-			}
-		}
-	}
+	 public void start() {
+	        System.out.println("Server started...");
+	        threadPool.execute(new Runnable() {
+	        	public void run() {
+					while (true) {
+						try {
+							Socket localSocket = ssocket.accept();
+							Handler handler = getHandler(localSocket);
+							threadPool.execute(handler);
+						} catch (Exception e) {
+							log.error(e.getMessage(), e);
+							break;
+						}
+					}
+				}
+	        });
+	    }
 
 	private Handler getHandler(Socket localSocket) throws Exception {
 		HttpParser parser = getParser(localSocket);

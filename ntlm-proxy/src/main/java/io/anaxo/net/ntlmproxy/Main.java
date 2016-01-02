@@ -55,9 +55,9 @@ public class Main {
 
 			setNoForwardPattern(props);
 
-			startHttpForwarder(props);
+			startHttpProxy(props);
 
-			startForwarders(props);
+			startTunnels(props);
 			
 			System.out.println("Running...");
 			log.info("Running...");
@@ -76,11 +76,13 @@ public class Main {
 		}
 	}
 
-	private static void startHttpForwarder(Properties props) throws IOException {
-		new Proxy(props, Integer.parseInt(props.getProperty(Main.PROXY_PORT))).start();
+	private static void startHttpProxy(Properties props) throws IOException {
+		int proxyPort = Integer.parseInt(props.getProperty(Main.PROXY_PORT));
+		Proxy proxy = new Proxy(props, proxyPort);
+		proxy.start();
 	}
 
-	private static void startForwarders(Properties props) throws Exception, IOException {
+	private static void startTunnels(Properties props) throws Exception, IOException {
 		String forwardString = props.getProperty(Main.PROXY_FORWARD);
 		if (forwardString != null) {
 			String[] forwards = forwardString.split(",");
