@@ -11,11 +11,11 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.handlers.Handler;
-import io.anaxo.net.ntlmproxy.handlers.HttpConnectHandler;
-import io.anaxo.net.ntlmproxy.handlers.HttpGetHandler;
-import io.anaxo.net.ntlmproxy.handlers.HttpHeadHandler;
-import io.anaxo.net.ntlmproxy.handlers.HttpPostHandler;
+import io.anaxo.net.ntlmproxy.proxy.handlers.Handler;
+import io.anaxo.net.ntlmproxy.proxy.handlers.HttpConnectHandler;
+import io.anaxo.net.ntlmproxy.proxy.handlers.HttpGetHandler;
+import io.anaxo.net.ntlmproxy.proxy.handlers.HttpHeadHandler;
+import io.anaxo.net.ntlmproxy.proxy.handlers.HttpPostHandler;
 
 public class Proxy extends Thread {
 
