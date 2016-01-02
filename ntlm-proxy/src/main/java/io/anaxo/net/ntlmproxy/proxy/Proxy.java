@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy;
+package io.anaxo.net.ntlmproxy.proxy;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,16 +17,16 @@ import io.anaxo.net.ntlmproxy.handlers.HttpGetHandler;
 import io.anaxo.net.ntlmproxy.handlers.HttpHeadHandler;
 import io.anaxo.net.ntlmproxy.handlers.HttpPostHandler;
 
-public class HttpForwarder extends Thread {
+public class Proxy extends Thread {
 
-	private static final Logger log = LoggerFactory.getLogger(HttpForwarder.class);
+	private static final Logger log = LoggerFactory.getLogger(Proxy.class);
 
 	private final ExecutorService threadPool = Executors.newCachedThreadPool();
 	private final ServerSocket ssocket;
 	private final Properties props;
 	private final Clients clients;
 
-	public HttpForwarder(Properties props, int localPort) throws IOException {
+	public Proxy(Properties props, int localPort) throws IOException {
 		ssocket = new ServerSocket(localPort);
 		this.props = props;
 		this.clients = new Clients(props);

@@ -1,9 +1,12 @@
-package io.anaxo.net.ntlmproxy;
+package io.anaxo.net.ntlmproxy.proxy;
 
 import java.util.Properties;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.NTCredentials;
+
+import io.anaxo.net.ntlmproxy.Main;
+import io.anaxo.net.ntlmproxy.utils.InetUtils;
 
 public class EndPoints {
 

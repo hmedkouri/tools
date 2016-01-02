@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy;
+package io.anaxo.net.ntlmproxy.utils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

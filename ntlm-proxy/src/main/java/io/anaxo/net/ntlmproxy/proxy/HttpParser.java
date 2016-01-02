@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy;
+package io.anaxo.net.ntlmproxy.proxy;
 
 
 import java.io.IOException;

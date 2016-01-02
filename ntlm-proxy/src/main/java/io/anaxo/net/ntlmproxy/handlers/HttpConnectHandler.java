@@ -10,10 +10,10 @@ import org.apache.http.impl.client.ProxyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.Clients;
-import io.anaxo.net.ntlmproxy.EndPoints;
-import io.anaxo.net.ntlmproxy.HttpParser;
-import io.anaxo.net.ntlmproxy.Piper;
+import io.anaxo.net.ntlmproxy.proxy.Clients;
+import io.anaxo.net.ntlmproxy.proxy.EndPoints;
+import io.anaxo.net.ntlmproxy.proxy.HttpParser;
+import io.anaxo.net.ntlmproxy.tunnel.Piper;
 
 public class HttpConnectHandler extends Handler {
 

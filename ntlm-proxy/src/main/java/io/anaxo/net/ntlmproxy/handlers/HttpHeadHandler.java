@@ -8,9 +8,9 @@ import org.apache.http.client.methods.HttpHead;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.Clients;
-import io.anaxo.net.ntlmproxy.EndPoints;
-import io.anaxo.net.ntlmproxy.HttpParser;
+import io.anaxo.net.ntlmproxy.proxy.Clients;
+import io.anaxo.net.ntlmproxy.proxy.EndPoints;
+import io.anaxo.net.ntlmproxy.proxy.HttpParser;
 
 public class HttpHeadHandler extends Handler {
 

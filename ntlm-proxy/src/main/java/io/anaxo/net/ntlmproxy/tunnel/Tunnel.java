@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy;
+package io.anaxo.net.ntlmproxy.tunnel;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,16 +12,19 @@ import org.apache.http.impl.client.ProxyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Forwarder extends Thread {
+import io.anaxo.net.ntlmproxy.Main;
+import io.anaxo.net.ntlmproxy.utils.InetUtils;
 
-  private static final Logger log = LoggerFactory.getLogger(Forwarder.class);
+public class Tunnel extends Thread {
+
+  private static final Logger log = LoggerFactory.getLogger(Tunnel.class);
 
   private final ServerSocket serverSocket;
   private final String remoteHost;
   private final int remotePort;
   private final Properties props;
 
-  public Forwarder(Properties props, int localPort, String remoteHost, int remotePort)
+  public Tunnel(Properties props, int localPort, String remoteHost, int remotePort)
       throws IOException {
     serverSocket = new ServerSocket(localPort);
     this.remotePort = remotePort;
