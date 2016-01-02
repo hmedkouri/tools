@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import io.anaxo.net.ntlmproxy.Main;
 import io.anaxo.net.ntlmproxy.utils.InetUtils;
+import io.anaxo.net.ntlmproxy.utils.Piper;
 
 public class Tunnel extends Thread {
 

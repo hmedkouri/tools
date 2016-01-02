@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.tunnel;
+package io.anaxo.net.ntlmproxy.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

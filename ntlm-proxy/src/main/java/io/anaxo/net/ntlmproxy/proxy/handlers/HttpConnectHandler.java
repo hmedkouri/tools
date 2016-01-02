@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import io.anaxo.net.ntlmproxy.proxy.Clients;
 import io.anaxo.net.ntlmproxy.proxy.EndPoints;
 import io.anaxo.net.ntlmproxy.proxy.HttpParser;
-import io.anaxo.net.ntlmproxy.tunnel.Piper;
+import io.anaxo.net.ntlmproxy.utils.Piper;
 
 public class HttpConnectHandler extends Handler {
 
