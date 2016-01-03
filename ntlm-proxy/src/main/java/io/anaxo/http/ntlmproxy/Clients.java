@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http;
+package io.anaxo.http.ntlmproxy;
 
 import java.util.Properties;
 
@@ -13,8 +13,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
-import io.anaxo.net.ntlmproxy.Main;
-import io.anaxo.net.ntlmproxy.utils.InetUtils;
+import io.anaxo.http.ntlmproxy.utils.InetUtils;
 
 public class Clients {
 

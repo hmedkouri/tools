@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.message;
+package io.anaxo.http.ntlmproxy.message;
 
 public interface HTTP {
 

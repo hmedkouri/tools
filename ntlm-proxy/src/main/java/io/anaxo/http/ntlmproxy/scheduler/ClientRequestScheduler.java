@@ -1,9 +1,9 @@
-package io.anaxo.net.ntlmproxy.http.scheduler;
+package io.anaxo.http.ntlmproxy.scheduler;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import io.anaxo.net.ntlmproxy.http.processor.ClientRequestProcessor;
+import io.anaxo.http.ntlmproxy.processor.ClientRequestProcessor;
 
 public class ClientRequestScheduler implements RequestScheduler {
 

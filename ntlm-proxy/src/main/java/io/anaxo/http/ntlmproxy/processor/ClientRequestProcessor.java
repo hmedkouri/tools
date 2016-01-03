@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.processor;
+package io.anaxo.http.ntlmproxy.processor;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -22,12 +22,12 @@ import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.http.Clients;
-import io.anaxo.net.ntlmproxy.http.connection.Connection;
-import io.anaxo.net.ntlmproxy.http.message.HttpInfo;
-import io.anaxo.net.ntlmproxy.http.message.HttpMethod;
-import io.anaxo.net.ntlmproxy.http.message.StreamingRequestEntity;
-import io.anaxo.net.ntlmproxy.utils.Piper;
+import io.anaxo.http.ntlmproxy.Clients;
+import io.anaxo.http.ntlmproxy.connection.Connection;
+import io.anaxo.http.ntlmproxy.message.HttpInfo;
+import io.anaxo.http.ntlmproxy.message.HttpMethod;
+import io.anaxo.http.ntlmproxy.message.StreamingRequestEntity;
+import io.anaxo.http.ntlmproxy.utils.Piper;
 
 public class ClientRequestProcessor extends AbstractClientProcessor {
 

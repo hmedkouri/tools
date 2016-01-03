@@ -1,12 +1,12 @@
-package io.anaxo.net.ntlmproxy.http.processor;
+package io.anaxo.http.ntlmproxy.processor;
 
 import java.io.IOException;
 import java.util.Properties;
 
-import io.anaxo.net.ntlmproxy.http.Clients;
-import io.anaxo.net.ntlmproxy.http.connection.Connection;
-import io.anaxo.net.ntlmproxy.http.message.HttpInfo;
-import io.anaxo.net.ntlmproxy.http.message.HttpMethod;
+import io.anaxo.http.ntlmproxy.Clients;
+import io.anaxo.http.ntlmproxy.connection.Connection;
+import io.anaxo.http.ntlmproxy.message.HttpInfo;
+import io.anaxo.http.ntlmproxy.message.HttpMethod;
 
 public class ClientProcessorFactory {
 

@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http;
+package io.anaxo.http.ntlmproxy;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -8,10 +8,10 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.http.connection.Connection;
-import io.anaxo.net.ntlmproxy.http.connection.ConnectionManager;
-import io.anaxo.net.ntlmproxy.http.processor.ClientRequestProcessor;
-import io.anaxo.net.ntlmproxy.http.scheduler.ClientRequestScheduler;
+import io.anaxo.http.ntlmproxy.connection.Connection;
+import io.anaxo.http.ntlmproxy.connection.ConnectionManager;
+import io.anaxo.http.ntlmproxy.processor.ClientRequestProcessor;
+import io.anaxo.http.ntlmproxy.scheduler.ClientRequestScheduler;
 
 public class Proxy {
 

@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.message;
+package io.anaxo.http.ntlmproxy.message;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

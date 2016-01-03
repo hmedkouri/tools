@@ -1,13 +1,13 @@
-package io.anaxo.net.ntlmproxy.http.processor;
+package io.anaxo.http.ntlmproxy.processor;
 
 import java.net.SocketTimeoutException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.http.connection.Connection;
-import io.anaxo.net.ntlmproxy.http.message.HTTP;
-import io.anaxo.net.ntlmproxy.http.message.HttpInfo;
+import io.anaxo.http.ntlmproxy.connection.Connection;
+import io.anaxo.http.ntlmproxy.message.HTTP;
+import io.anaxo.http.ntlmproxy.message.HttpInfo;
 
 public abstract class AbstractClientProcessor implements ClientProcessor {
 

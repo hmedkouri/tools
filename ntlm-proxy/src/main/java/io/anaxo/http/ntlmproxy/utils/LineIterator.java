@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.utils;
+package io.anaxo.http.ntlmproxy.utils;
 
 public class LineIterator {
 

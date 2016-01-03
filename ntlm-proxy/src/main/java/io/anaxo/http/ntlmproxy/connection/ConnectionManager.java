@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.connection;
+package io.anaxo.http.ntlmproxy.connection;
 
 import java.io.IOException;
 import java.net.ServerSocket;

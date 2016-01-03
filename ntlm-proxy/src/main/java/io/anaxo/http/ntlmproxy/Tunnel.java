@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.tunnel;
+package io.anaxo.http.ntlmproxy;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,9 +12,8 @@ import org.apache.http.impl.client.ProxyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.net.ntlmproxy.Main;
-import io.anaxo.net.ntlmproxy.utils.InetUtils;
-import io.anaxo.net.ntlmproxy.utils.Piper;
+import io.anaxo.http.ntlmproxy.utils.InetUtils;
+import io.anaxo.http.ntlmproxy.utils.Piper;
 
 public class Tunnel extends Thread {
 

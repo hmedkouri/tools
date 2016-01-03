@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.exceptions;
+package io.anaxo.http.ntlmproxy.exceptions;
 
 public class UnSupportedHttpMethodException extends RuntimeException{
     

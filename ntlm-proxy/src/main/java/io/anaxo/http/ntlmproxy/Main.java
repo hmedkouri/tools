@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy;
+package io.anaxo.http.ntlmproxy;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,9 +12,6 @@ import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.anaxo.net.ntlmproxy.http.Proxy;
-import io.anaxo.net.ntlmproxy.tunnel.Tunnel;
 
 public class Main {
 
