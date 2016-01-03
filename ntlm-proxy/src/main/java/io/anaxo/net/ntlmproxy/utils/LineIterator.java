@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.processor;
+package io.anaxo.net.ntlmproxy.utils;
 
 /**
  * @author Dogukan Sonmez

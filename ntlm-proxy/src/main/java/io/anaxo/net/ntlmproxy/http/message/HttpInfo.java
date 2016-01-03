@@ -1,4 +1,4 @@
-package io.anaxo.net.ntlmproxy.http.processor;
+package io.anaxo.net.ntlmproxy.http.message;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,8 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.anaxo.net.ntlmproxy.http.connection.Connection;
-import io.anaxo.net.ntlmproxy.http.message.HTTP;
-import io.anaxo.net.ntlmproxy.http.message.HttpMethod;
+import io.anaxo.net.ntlmproxy.utils.LineIterator;
 
 public class HttpInfo {
 

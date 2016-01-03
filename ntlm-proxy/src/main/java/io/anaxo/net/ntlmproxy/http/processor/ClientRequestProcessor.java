@@ -30,7 +30,9 @@ import org.slf4j.LoggerFactory;
 import io.anaxo.net.ntlmproxy.http.Clients;
 import io.anaxo.net.ntlmproxy.http.connection.Connection;
 import io.anaxo.net.ntlmproxy.http.message.HTTP;
+import io.anaxo.net.ntlmproxy.http.message.HttpInfo;
 import io.anaxo.net.ntlmproxy.http.message.HttpMethod;
+import io.anaxo.net.ntlmproxy.http.message.StreamingRequestEntity;
 import io.anaxo.net.ntlmproxy.utils.Piper;
 
 public class ClientRequestProcessor {
