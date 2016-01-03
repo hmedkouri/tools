@@ -64,4 +64,12 @@ public class Connection {
     public int read() throws IOException {
         return bufferedReader.read();
     }
+
+	public void shutdownInput() {
+		try {
+			socket.shutdownInput();
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
+	}
 }
