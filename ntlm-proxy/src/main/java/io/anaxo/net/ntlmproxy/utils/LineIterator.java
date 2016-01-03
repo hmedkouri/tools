@@ -1,9 +1,5 @@
 package io.anaxo.net.ntlmproxy.utils;
 
-/**
- * @author Dogukan Sonmez
- */
-
 public class LineIterator {
 
     private String splitter = " ";

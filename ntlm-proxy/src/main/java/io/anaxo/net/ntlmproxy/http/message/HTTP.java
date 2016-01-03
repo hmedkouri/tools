@@ -1,9 +1,5 @@
 package io.anaxo.net.ntlmproxy.http.message;
 
-/**
- * @author Dogukan Sonmez
- */
-
 public interface HTTP {
 
     public static final String CONTENT_LENGTH = "Content-Length";

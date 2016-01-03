@@ -5,10 +5,6 @@ import java.util.concurrent.Executors;
 
 import io.anaxo.net.ntlmproxy.http.processor.ClientRequestProcessor;
 
-/**
- * @author Dogukan Sonmez
- */
-
 public class ClientRequestScheduler implements RequestScheduler {
 
     ExecutorService executor;
