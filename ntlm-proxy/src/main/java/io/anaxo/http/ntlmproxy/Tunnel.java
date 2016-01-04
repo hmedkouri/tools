@@ -1,83 +1,62 @@
 package io.anaxo.http.ntlmproxy;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import org.apache.http.HttpException;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.NTCredentials;
-import org.apache.http.impl.client.ProxyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.anaxo.http.ntlmproxy.utils.InetUtils;
-import io.anaxo.http.ntlmproxy.utils.Piper;
+import io.anaxo.http.ntlmproxy.connection.Connection;
+import io.anaxo.http.ntlmproxy.connection.ConnectionManager;
+import io.anaxo.http.ntlmproxy.processor.ClientProcessor;
+import io.anaxo.http.ntlmproxy.processor.ClientProcessorFactory;
+import io.anaxo.http.ntlmproxy.scheduler.ClientRequestScheduler;
 
-public class Tunnel extends Thread {
+public class Tunnel {
 
-  private static final Logger log = LoggerFactory.getLogger(Tunnel.class);
+	private static final Logger log = LoggerFactory.getLogger(Tunnel.class);
 
-  private final ServerSocket serverSocket;
-  private final String remoteHost;
-  private final int remotePort;
-  private final Properties props;
+	private volatile boolean isTunnelAlive = true;
+	
+	private final ConnectionManager connectionManager;
+	private final ClientRequestScheduler requestScheduler;
+	private final ExecutorService mainExecutor;
+	private final Properties properties;
+	private final String uri;
 
-  public Tunnel(Properties props, int localPort, String remoteHost, int remotePort)
-      throws IOException {
-    serverSocket = new ServerSocket(localPort);
-    this.remotePort = remotePort;
-    this.remoteHost = remoteHost;
-    this.props = props;
-  }
+	public Tunnel(Properties properties, int localPort, String remoteHost, int remotePort) throws IOException {
+		int threadCount = Integer.parseInt(properties.getProperty("threadCount", "10"));
+		int socketTimeoutInMilliseconds = Integer.parseInt(properties.getProperty("timeout", "10000"));
+		this.connectionManager = new ConnectionManager(localPort, socketTimeoutInMilliseconds);
+		this.requestScheduler = new ClientRequestScheduler(threadCount);
+		this.uri = remoteHost + ":" + remotePort;
+		this.mainExecutor = Executors.newSingleThreadExecutor();
+		this.properties = properties;
+	}
 
-  class Handler extends Thread {
-
-    private final Socket localSocket;
-
-    public Handler(Socket localSocket) {
-      this.localSocket = localSocket;
+	public void start() {
+		log.info("Http Tunnel started...");
+		mainExecutor.execute(new Runnable() {
+			public void run() {
+				while (isTunnelAlive) {
+					try {
+						Connection connection = connectionManager.awaitClient();
+						ClientProcessor clientProcessor = ClientProcessorFactory.getClientProcessor(connection, properties, uri) ;
+						requestScheduler.schedule(clientProcessor);						
+					} catch (Exception e) {
+						log.error(e.getMessage(), e);
+						break;
+					}
+				}
+			}
+		});
+	}
+	
+	public void stop() {
+        connectionManager.shutDown();
+        mainExecutor.shutdown();
+        requestScheduler.shutDown();
     }
-
-    @Override
-    public void run() {
-      ProxyClient client = new ProxyClient();
-
-      String proxyHost = props.getProperty(Main.PROXY_DELEGATE_HOST_NAME);
-      int proxyPort = Integer.parseInt(props.getProperty(Main.PROXY_DELEGATE_HOST_PORT));
-      HttpHost proxy = new HttpHost(proxyHost, proxyPort);
-      HttpHost target = new HttpHost(remoteHost, remotePort);
-
-      String userName = props.getProperty(Main.PROXY_DELEGATE_USERNAME);
-      String password = props.getProperty(Main.PROXY_DELEGATE_PASSWORD);
-      String hostName = InetUtils.getHostName();
-      String domain = props.getProperty(Main.PROXY_DELEGATE_DOMAIN);
-      NTCredentials credentials = new NTCredentials(userName, password, hostName, domain);
-
-      try (Socket remoteSocket = client.tunnel(proxy, target, credentials)) {
-        new Thread(new Piper(localSocket.getInputStream(), remoteSocket.getOutputStream())).start();
-        new Piper(remoteSocket.getInputStream(), localSocket.getOutputStream()).run();
-      } catch (IOException | HttpException e) {
-        log.error(e.getMessage(), e);
-      }
-    }
-  }
-
-  @Override
-  public void run() {
-    while (true) {
-      try {
-        Socket s = serverSocket.accept();
-        new Handler(s).start();
-      } catch (IOException e) {
-        log.error(e.getMessage(), e);
-        break;
-      }
-    }
-  }
-
-  public void close() throws IOException {
-    serverSocket.close();
-  }
 }

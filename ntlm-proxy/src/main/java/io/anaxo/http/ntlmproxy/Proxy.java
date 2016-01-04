@@ -10,7 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import io.anaxo.http.ntlmproxy.connection.Connection;
 import io.anaxo.http.ntlmproxy.connection.ConnectionManager;
-import io.anaxo.http.ntlmproxy.processor.ClientRequestProcessor;
+import io.anaxo.http.ntlmproxy.processor.ClientProcessor;
+import io.anaxo.http.ntlmproxy.processor.ClientProcessorFactory;
 import io.anaxo.http.ntlmproxy.scheduler.ClientRequestScheduler;
 
 public class Proxy {
@@ -22,16 +23,15 @@ public class Proxy {
 	private final ConnectionManager connectionManager;
 	private final ClientRequestScheduler requestScheduler;
 	private final ExecutorService mainExecutor;
-	private final Clients clients;
+	private final Properties properties;
 
-	public Proxy(Properties props, int localPort) throws IOException {
-
-		int threadCount = Integer.parseInt(props.getProperty("threadCount", "10"));
-		int socketTimeoutInMilliseconds = Integer.parseInt(props.getProperty("timeout","10000"));
+	public Proxy(Properties properties, int localPort) throws IOException {
+		int threadCount = Integer.parseInt(properties.getProperty("threadCount", "10"));
+		int socketTimeoutInMilliseconds = Integer.parseInt(properties.getProperty("timeout","10000"));
 		this.connectionManager = new ConnectionManager(localPort, socketTimeoutInMilliseconds);
 		this.requestScheduler = new ClientRequestScheduler(threadCount);
 		this.mainExecutor = Executors.newSingleThreadExecutor();
-		this.clients = new Clients(props);
+		this.properties = properties;
 	}
 
 	public void start() {
@@ -41,8 +41,8 @@ public class Proxy {
 				while (isProxyAlive) {
 					try {
 						Connection connection = connectionManager.awaitClient();
-						ClientRequestProcessor clientRequestProcessor = new ClientRequestProcessor(connection, clients);
-						requestScheduler.schedule(clientRequestProcessor);						
+						ClientProcessor clientProcessor = ClientProcessorFactory.getClientProcessor(connection, properties);
+						requestScheduler.schedule(clientProcessor);						
 					} catch (Exception e) {
 						log.error(e.getMessage(), e);
 						break;

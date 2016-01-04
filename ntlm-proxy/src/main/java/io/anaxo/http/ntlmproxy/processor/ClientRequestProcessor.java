@@ -42,8 +42,8 @@ public class ClientRequestProcessor extends AbstractClientProcessor {
 	private Connection connection;
 	private Clients clients;
 
-	public ClientRequestProcessor(Connection connection, Clients clients) {
-		super(connection);
+	public ClientRequestProcessor(Connection connection, HttpInfo httpInfo, Clients clients) {
+		super(connection, httpInfo);
 		this.clients = clients;
 	}
 

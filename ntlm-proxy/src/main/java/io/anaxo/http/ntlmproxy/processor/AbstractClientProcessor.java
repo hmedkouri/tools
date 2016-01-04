@@ -14,24 +14,20 @@ public abstract class AbstractClientProcessor implements ClientProcessor {
 	private static final Logger log = LoggerFactory.getLogger(AbstractClientProcessor.class);
 	
 	private final Connection connection;
+	private final HttpInfo httpInfo;
 	
-	public AbstractClientProcessor(Connection connection) {
+	public AbstractClientProcessor(Connection connection, HttpInfo httpInfo) {
 		this.connection = connection;
+		this.httpInfo = httpInfo;
 	}
 	
 	public void process() {
 		while (!Thread.interrupted() && connection.isOpen()) {
 			try {
-
-				HttpInfo httpInfo = new HttpInfo(connection);
-
 				log.info("New request received." + httpInfo.getMethod() + " " + httpInfo.getURI() + " "
 						+ httpInfo.getHttpVersion());
-
 				execute(httpInfo);
-
 				closeConnectionIfItIsNotPersistent(httpInfo);
-
 			} catch (Exception e) {
 				if (e instanceof SocketTimeoutException) {
 					log.error("Read time out occurred closing connection");
@@ -55,5 +51,9 @@ public abstract class AbstractClientProcessor implements ClientProcessor {
 	
 	public Connection getConnection() {
 		return connection;
+	}
+	
+	public HttpInfo getHttpInfo() {
+		return httpInfo;
 	}
 }

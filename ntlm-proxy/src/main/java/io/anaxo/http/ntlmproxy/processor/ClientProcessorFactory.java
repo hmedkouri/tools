@@ -11,12 +11,21 @@ import io.anaxo.http.ntlmproxy.message.HttpMethod;
 public class ClientProcessorFactory {
 
 	public static ClientProcessor getClientProcessor(Connection connection, Properties properties) throws IOException {
-		Clients clients = new Clients(properties);
 		HttpInfo httpInfo = new HttpInfo(connection);
+		return getClientProcessor(connection, properties, httpInfo);
+	}
+	
+	public static ClientProcessor getClientProcessor(Connection connection, Properties properties, String uri) throws IOException {
+		HttpInfo httpInfo = new HttpInfo(uri);
+		return getClientProcessor(connection, properties, httpInfo);
+	}
+	
+	private static ClientProcessor getClientProcessor(Connection connection, Properties properties, HttpInfo httpInfo) throws IOException {
+		Clients clients = new Clients(properties);
 		if (HttpMethod.CONNECT.equals(httpInfo.getMethod())) {
-			return new ClientConnectProcessor(connection, clients);
+			return new ClientConnectProcessor(connection, httpInfo, clients);
 		} else {
-			return new ClientRequestProcessor(connection, clients);
+			return new ClientRequestProcessor(connection, httpInfo, clients);
 		}
 	}
 }

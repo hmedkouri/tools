@@ -28,6 +28,12 @@ public class HttpInfo {
 		parse(connection);
 	}
 	
+	public HttpInfo(String uri) throws IOException {
+		this.uri = uri;
+		this.method = HttpMethod.CONNECT;
+		this.version = "HTTP/1.1";
+	}
+	
 	public String getURI() {
 		return uri;
 	}
